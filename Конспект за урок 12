@@ -1,0 +1,31 @@
+def f(action = '+'):
+  if action  == '+': 
+    return lambda x, y: x + y
+  elif action == '-':
+    def sub(x,y):
+      return x-y
+    return sub
+  return lambda : None
+# function gun
+def gun():
+  return "BOOOM!"
+  
+  
+# func decorator
+def decorator (f_in:"lambda") -> "lambda":
+  def f_out():
+    print("Before call of f_in")
+    result = "*" + f_in()
+    print("after call of f_in")
+    return result 
+  return f_out
+
+def silencer(gun):
+  def silenced_gun():
+    return "Silent kill "+gun()
+  return silenced_gun
+  
+
+@silencer
+def gun1():
+  return "Bam"
